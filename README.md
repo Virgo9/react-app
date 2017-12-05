@@ -1,5 +1,5 @@
 ### 搭建
-`git clone https://github.com/Virgo9/react-app.git`
+`git clone https://github.com/virgo02014/react-app.git`
 `cd react-app`
 
 `yarn install`

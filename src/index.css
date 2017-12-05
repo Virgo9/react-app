@@ -9,42 +9,35 @@ body > div {
   margin-bottom: 20px;
 }
 
+/* header start */
 .App {
   text-align: center;
 }
-
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
-
 .App-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
   color: white;
 }
-
 .App-intro {
   font-size: large;
 }
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+/* end header */
 
-
+/* play-game start */
 .board-row:after {
   clear: both;
   content: "";
   display: table;
 }
-
-.status {
-  margin-bottom: 10px;
-}
-
 .square {
   background: #fff;
   border: 1px solid #999;
@@ -59,20 +52,14 @@ body > div {
   text-align: center;
   width: 34px;
 }
-
 .square:focus {
   outline: none;
 }
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
 .game {
   display: flex;
   flex-direction: row;
 }
-
 .game-info {
   margin-left: 20px;
 }
+/* end play-game */

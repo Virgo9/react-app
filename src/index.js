@@ -1,10 +1,85 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { AppRegistry, Image, Text, View, StyleSheet } from 'react-native';
 import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './index.css';
 
-//============== header ==============
-class App extends React.Component {
+const styles = StyleSheet.create({
+  bigblue: {
+    color: 'blue',
+    fontWeight: 'bold',
+    fontSize: 30,
+  },
+  red: {
+    color: 'red',
+  }
+});
+
+class Test extends Component {
+  render() {
+    return (
+      <View style={{height: 300}}>
+        <View style={{flex: 1, backgroundColor: 'powderblue'}} />
+        <View style={{flex: 2, backgroundColor: 'skyblue'}} />
+        <View style={{flex: 3, backgroundColor: 'steelblue'}} />
+      </View>
+    );
+  }
+}
+ReactDOM.render(<Test />, document.getElementById('test'));
+
+class Bananas extends Component {
+  render() {
+    let pic = {
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
+    };
+    return (
+      <div>
+        <Image source={pic} style={{width: 193, height: 110}} />
+        <Image source={require('./logo.svg')} style={{width: 193, height: 110}} />
+      </div> // JSX语句
+    );
+  }
+}
+ReactDOM.render(<Bananas />, document.getElementById('Bananas'));
+// AppRegistry.registerComponent('Bananas', () => Bananas);
+
+class CommonText extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showText: true };
+
+    setInterval(() => {
+      this.setState(previousState => {
+        return { showText: !previousState.showText };
+      })
+    }, 1000);
+  }
+  render() {
+    let display = this.state.showText ? this.props.name : '';
+    return (
+      <Text>{display}</Text>
+    );
+  }
+}
+class LotsOfGreetings extends Component {
+  render() {
+    return (
+      <View>
+        <CommonText name="first" />
+        <CommonText name="two" />
+        <Text style={styles.bigblue}>three</Text>
+        <Text style={styles.red}>four</Text>
+        <Text style={[styles.red, styles.bigblue]}>five</Text>
+        <Text style={[styles.bigblue, styles.red]}>six</Text>
+      </View> // View 常用作其他组件的容器，帮助控制布局和样式 style="{{alignItems: 'center'}}"???
+    );
+  }
+}
+ReactDOM.render(<LotsOfGreetings />, document.getElementById('LotsOfGreetings'));
+
+// header start
+class App extends Component {
   render() {
     return (
       <div className="App">
@@ -20,8 +95,10 @@ class App extends React.Component {
   }
 }
 ReactDOM.render(<App />, document.getElementById('header'));
+// end header
 
-//============== root ==============
+
+// play-game start
 function Square(props) {
   return (
     <button className="square" onClick={props.onClick}>
@@ -30,7 +107,7 @@ function Square(props) {
   );
 }
 
-class Board extends React.Component {
+class Board extends Component {
   renderSquare(i) {
     return (
       <Square
@@ -63,7 +140,7 @@ class Board extends React.Component {
   }
 }
 
-class Game extends React.Component {
+class Game extends Component {
   constructor() {
     super();
     this.state = {
@@ -141,7 +218,7 @@ class Game extends React.Component {
   }
 }
 
-ReactDOM.render(<Game />, document.getElementById("root"));
+ReactDOM.render(<Game />, document.getElementById("play-game"));
 
 function calculateWinner(squares) {
   const lines = [
@@ -162,16 +239,17 @@ function calculateWinner(squares) {
   }
   return null;
 }
+// end play-game
 
 
-//============== container ==============
- class ProductCategoryRow extends React.Component {
+// search-table start
+ class ProductCategoryRow extends Component {
   render() {
     return <tr><th colSpan="2">{this.props.category}</th></tr>;
   }
 }
 
-class ProductRow extends React.Component {
+class ProductRow extends Component {
   render() {
     var name = this.props.product.stocked ?
       this.props.product.name :
@@ -187,7 +265,7 @@ class ProductRow extends React.Component {
   }
 }
 
-class ProductTable extends React.Component {
+class ProductTable extends Component {
   render() {
     var rows = [];
     var lastCategory = null;
@@ -212,7 +290,7 @@ class ProductTable extends React.Component {
   }
 }
 
-class SearchBar extends React.Component {
+class SearchBar extends Component {
   render() {
     return (
       <form>
@@ -227,7 +305,7 @@ class SearchBar extends React.Component {
   }
 }
 
-class FilterableProductTable extends React.Component {
+class FilterableProductTable extends Component {
   render() {
     return (
       <div>
@@ -250,5 +328,6 @@ var PRODUCTS = [
 
 ReactDOM.render(
   <FilterableProductTable products={PRODUCTS} />,
-  document.getElementById('container')
+  document.getElementById('search-table')
 );
+// end search-table
