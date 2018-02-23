@@ -1,18 +1,22 @@
 import React from 'react';
 // import { AppRegistry } from 'react-native';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
 
 import './index.css';
 
-import App from "./components/app.js";
-import Banner from './components/banner.js';
-import Test from './components/test.js';
-import Bananas from './components/bananas.js';
-import Game from './components/game.js';
-import Greeting from './components/greeting.js';
-import Product from './components/product.js';
+import Header from "./components/Header.js";
+import Banner from './components/Banner.js';
+import Test from './components/Test.js';
+import Bananas from './components/Bananas.js';
+import Game from './components/Game.js';
+import Greeting from './components/Greeting.js';
+import Product from './components/Product.js';
 
-ReactDOM.render(<App />, document.getElementById('header'));
+import Counter from './components/Counter';
+import counter from './reducers';
+
+ReactDOM.render(<Header />, document.getElementById('header'));
 ReactDOM.render(<Banner />, document.getElementById('banner'));
 ReactDOM.render(<Test />, document.getElementById('test'));
 ReactDOM.render(<Bananas />, document.getElementById('bananas'));
@@ -29,3 +33,15 @@ var PRODUCTS = [
   {category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7'}
 ];
 ReactDOM.render(<Product products={PRODUCTS} />, document.getElementById('product'));
+
+const store = createStore(counter);
+const render = () => ReactDOM.render(
+    <Counter
+        value={store.getState()}
+        onIncrement={() => store.dispatch({ type: 'INCREMENT'})}
+        onDecrement={() => store.dispatch({ type: 'DECREMENT'})}
+    />,
+    document.getElementById('counter')
+)
+render();
+store.subscribe(render);

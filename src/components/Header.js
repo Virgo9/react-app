@@ -2,10 +2,10 @@ import React from 'react';
 import logo from '../logo.svg';
 
 let styles = {
-  app: {
+  container: {
     textAlign: 'center'
   },
-  header: {
+  content: {
     backgroundColor: '#222',
     color: 'white',
     height: 150,
@@ -16,12 +16,12 @@ let styles = {
   }
 };
 
-class App extends React.Component {
+class Header extends React.Component {
   render() {
     return (
-      <div style={styles.app}>
-        <div style={styles.header}>
-          <img src={logo} className="App-logo" alt="logo" />
+      <div style={styles.container}>
+        <div style={styles.content}>
+          <img src={logo} className="Header-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
         <p style={styles.intro}>
@@ -32,4 +32,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default Header;
