@@ -2,6 +2,8 @@ import React from 'react';
 // import { AppRegistry } from 'react-native';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
+// import { StackNavigator } from 'react-navigation';
+// import routers from './routers.js';
 
 import './index.css';
 
@@ -16,6 +18,8 @@ import Product from './components/Product.js';
 import Counter from './components/Counter';
 import counter from './reducers';
 
+// import RnList from "./components/List.js";
+
 ReactDOM.render(<Header />, document.getElementById('header'));
 ReactDOM.render(<Banner />, document.getElementById('banner'));
 ReactDOM.render(<Test />, document.getElementById('test'));
@@ -23,6 +27,7 @@ ReactDOM.render(<Bananas />, document.getElementById('bananas'));
 // AppRegistry.registerComponent('Bananas', () => Bananas);
 ReactDOM.render(<Game />, document.getElementById("game"));
 ReactDOM.render(<Greeting />, document.getElementById('greeting'));
+// ReactDOM.render(<RnList />, document.getElementById('list'));
 
 var PRODUCTS = [
   {category: 'Sporting Goods', price: '$49.99', stocked: true, name: 'Football'},
@@ -45,3 +50,18 @@ const render = () => ReactDOM.render(
 )
 render();
 store.subscribe(render);
+
+// routers.App = { screen: App };
+// const ModalNavigator = StackNavigator(
+//     routers,
+//     {
+//         navigationOptions: { header: null },
+//         onTransitionStart: (transitionProps) => {
+//             if(transitionProps.scene.route.routeName === 'ListScreen'){
+//                 BackHandler.addEventListener('hardwareBackPress', handleBack);
+//             }else {
+//                 BackHandler.removeEventListener('hardwareBackPress', handleBack);
+//             }
+//         }
+//     }
+// )
